@@ -13,7 +13,7 @@ Python Wrapper for interacting with the Flutterwave API
 - Create an account in Flutterwave and obtain your `Secret Key` only.
 
 ```
-from python_flutterwave import payment, initiate_payment
+from python_flutterwave import payment
 
 payment.token = 'YOUR_SECRET_KEY'
 ```
