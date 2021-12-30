@@ -18,7 +18,7 @@ from python_flutterwave import payment
 payment.token = 'YOUR_SECRET_KEY'
 ```
 
-- To trigger a payment that returns a redirect uri
+- To trigger a standard payment that returns a redirect uri
 
 ```
 uri = payment.initiate_payment(tx_ref="qwerty", amount=100, redirect_url='your_callback_url',
@@ -37,4 +37,15 @@ then it may be `http://example.com/callback/?status=successful&tx_ref=qwerty&tra
 - To check the transaction details e.g. successful or not, grab the transaction_id from the previous step. 
 ```
 details = payment.get_payment_details(transaction_id)
+print(details)
+```
+
+- To trigger an automatic mpesa charge on your customer, first configure your Webhook url in the dashboard, it may be a
+simple server; Flutterwave will post some data regarding your transaction status in that url. This method call will
+return a Python dict object. You can decide what to do thereon.
+```
+mpesa_trans_details = payment.trigger_mpesa_payment(tx_ref="qwertyuio", amount=100, currency='KES', 
+                                                    email='johndoe@gmail.com', phone_number='1234567890', 
+                                                    full_name='John Doe')
+print(mpesa_trans_details)
 ```
