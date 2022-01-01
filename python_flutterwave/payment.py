@@ -42,7 +42,6 @@ def get_payment_details(trans_id: str) -> dict:
     """
     Takes the transaction_id from the request and returns the status info in json.
     It transaction_id is different from the transaction_ref so it should be grabbed from the request in the redirect url
-
     """
     url = f"https://api.flutterwave.com/v3/transactions/{trans_id}/verify"
 
@@ -58,8 +57,9 @@ def get_payment_details(trans_id: str) -> dict:
 def trigger_mpesa_payment(tx_ref: str, amount: float, currency: str, email: Optional[str], phone_number: str,
                           full_name: str) -> dict:
     """
-    This will automatically trigger an MPESA payment from your customer. It will return a dictionary with details
-    regarding the transaction. Flutterwave will also send the status to your webhook configured in the dashboard.
+    This will automatically trigger an MPESA payment in form of an STK Push from your customer. It will return a
+    dictionary with details regarding the transaction. Flutterwave will also send the status to your webhook configured
+    in the dashboard.
     """
     url = "https://api.flutterwave.com/v3/charges?type=mpesa"
 
@@ -77,4 +77,35 @@ def trigger_mpesa_payment(tx_ref: str, amount: float, currency: str, email: Opti
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
+    return dict(response.json())
+
+
+def initiate_ussd_payment(tx_ref: str, account_bank: str, amount: float, email: str, phone_number: str,
+                          full_name: str) -> dict:
+    """
+    :param tx_ref: str
+    :param account_bank: str
+    :param amount: float
+    :param email: str
+    :param phone_number: str
+    :param full_name: str
+    :return: dict
+    """
+    url = "https://api.flutterwave.com/v3/charges?type=ussd"
+    payload = json.dumps({
+        "tx_ref": f"{tx_ref}",
+        "account_bank": f"{account_bank}",
+        "amount": f"{amount}",
+        "currency": "NGN",
+        "email": f"{email}",
+        "phone_number": f"{phone_number}",
+        "fullname": f"{full_name}"
+    })
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
     return dict(response.json())
