@@ -18,6 +18,27 @@ from python_flutterwave import payment
 payment.token = 'YOUR_SECRET_KEY'
 ```
 
+```
+Here are all the possible values for payment options available on Flutterwave:
+0: "account"
+1: "card"
+2: "banktransfer"
+3: "mpesa"
+4: "mobilemoneyrwanda"
+5: "mobilemoneyzambia"
+6: "qr"
+7: "mobilemoneyuganda"
+8: "ussd"
+9: "credit"
+10: "barter"
+11: "mobilemoneyghana"
+12: "payattitude"
+13: "mobilemoneyfranco"
+14: "paga"
+15: "1voucher"
+16: "mobilemoneytanzania"
+```
+
 - To trigger a standard payment that returns a redirect uri
 
 ```
@@ -56,6 +77,28 @@ show your customer for payment completion. For other banks, you may also need to
   
   - By default, `NGN` is the only supported currency for USSD payments so this method automatically uses `NGN`
   - Only a number of banks support `USSD` so you have to refer to the docs to check your bank and its corresponding `account_bank` code.
+```
+At the moment, banks available for USSD payments (and their numeric codes) are:
+
+Access Bank -- 044
+Ecobank -- 050
+Fidelity Bank -- 070
+First Bank of Nigeria -- 011
+First City Monument Bank (FCMB) -- 214
+GTBank -- 058
+Heritage Bank -- 030
+Keystone Bank -- 082
+Stanbic IBTC Bank -- 221
+Sterling Bank -- 232
+Union Bank -- 032
+United Bank for Africa -- 033
+Unity Bank -- 215
+VFD Microfinance Bank -- 090110
+Wema Bank -- 035
+Zenith Bank -- 057
+```
+
+
 ```
 details = payment.initiate_ussd_payment(tx_ref="123erd", amount=100, email='johndoe@gmail.com',
                                         phone_number='789456123', full_name='John Doe', account_bank='057')
