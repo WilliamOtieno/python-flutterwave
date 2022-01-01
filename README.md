@@ -10,7 +10,7 @@ Python Wrapper for interacting with the Flutterwave API
 
 ## Usage
 
-- Create an account in Flutterwave and obtain your `Secret Key` only.
+- Create an account in Flutterwave [here](https://dashboard.flutterwave.com/signup?referrals=RV1284343) and obtain your `Secret Key` only.
 
 ```
 from python_flutterwave import payment
