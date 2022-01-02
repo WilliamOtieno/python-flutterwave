@@ -5,10 +5,9 @@ from typing import Optional
 token = ""
 
 
-def initiate_payment(tx_ref: str, amount: float, currency: str, redirect_url: str, payment_options: str,
-                     customer_email: str, customer_phone_number: Optional[str], customer_name: str,
-                     title: Optional[str],
-                     description: Optional[str]) -> str:
+def initiate_payment(tx_ref: str, amount: float, currency: Optional[str], redirect_url: str, customer_name: str,
+                     payment_options: Optional[str], title: Optional[str], customer_email: str,
+                     customer_phone_number: Optional[str], description: Optional[str]) -> str:
     """This is used to initiate standard payments. It takes in the arguments and returns the url to redirect users for
     payments """
     payment_url = "https://api.flutterwave.com/v3/payments"
@@ -38,6 +37,7 @@ def initiate_payment(tx_ref: str, amount: float, currency: str, redirect_url: st
     return link
 
 
+# pragma: no cover
 def get_payment_details(trans_id: str) -> dict:
     """
     Takes the transaction_id from the request and returns the status info in json.
