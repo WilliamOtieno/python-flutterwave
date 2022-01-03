@@ -37,7 +37,6 @@ def initiate_payment(tx_ref: str, amount: float, currency: Optional[str], redire
     return link
 
 
-# pragma: no cover
 def get_payment_details(trans_id: str) -> dict:
     """
     Takes the transaction_id from the request and returns the status info in json.
@@ -108,4 +107,27 @@ def initiate_ussd_payment(tx_ref: str, account_bank: str, amount: float, email: 
 
     response = requests.request("POST", url, headers=headers, data=payload)
 
+    return dict(response.json())
+
+
+def verify_bank_account_details(account_number: str, account_bank: str) -> dict:
+    """
+    Takes the customer's account number and bank code as args and returns a dict with some data on the customer's account
+    :param account_number: str
+    :param account_bank: str
+    :return: dict
+    """
+
+    url = "https://api.flutterwave.com/v3/accounts/resolve"
+
+    payload = json.dumps({
+        "account_number": f"{account_number}",
+        "account_bank": f"{account_bank}"
+    })
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
     return dict(response.json())

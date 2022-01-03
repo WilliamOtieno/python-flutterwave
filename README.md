@@ -108,3 +108,11 @@ details = payment.initiate_ussd_payment(tx_ref="123erd", amount=100, email='john
                                         phone_number='789456123', full_name='John Doe', account_bank='057')
 print(details)
 ```
+
+- For bank transactions, it is important to first verify the details given to you by the customer before granting incentives
+according to the specifications of your application.
+- To verify bank details call the function below that returns a Python dictionary with the data...
+```
+details = payment.verify_bank_account_details(account_number= "0690000032", account_bank= "044")
+print(details)
+```
