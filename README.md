@@ -4,6 +4,10 @@
 Python Wrapper for interacting with the Flutterwave API
 
 
+### Contribution
+ - Before making any further steps (for interested contributors), please refer to the [CONTRIBUTING GUIDE](/CONTRIBUTING.md).
+
+
 ## Installation
 
 - ``pip install python-flutterwave``
