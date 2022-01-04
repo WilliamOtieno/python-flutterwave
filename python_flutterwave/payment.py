@@ -112,7 +112,7 @@ def initiate_ussd_payment(tx_ref: str, account_bank: str, amount: float, email: 
 
 def verify_bank_account_details(account_number: str, account_bank: str) -> dict:
     """
-    Takes the customer's account number and bank code as args and returns a dict with some data on the customer's account
+    Takes the customer's account number and bank code as args and returns a dict with data on the customer's account
     :param account_number: str
     :param account_bank: str
     :return: dict
@@ -130,4 +130,21 @@ def verify_bank_account_details(account_number: str, account_bank: str) -> dict:
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
+    return dict(response.json())
+
+
+def verify_card_details(card_bin: str) -> dict:
+    """
+    Returns a python dict with the info from querying the results.
+    :param card_bin: str
+    :return: dict
+    """
+    url = f"https://api.flutterwave.com/v3/card-bins/{card_bin}"
+
+    payload = {}
+    headers = {
+        'Authorization': f'Bearer {token}'
+    }
+
+    response = requests.request("GET", url, headers=headers, data=payload)
     return dict(response.json())

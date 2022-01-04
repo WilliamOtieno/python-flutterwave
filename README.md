@@ -116,3 +116,12 @@ according to the specifications of your application.
 details = payment.verify_bank_account_details(account_number= "0690000032", account_bank= "044")
 print(details)
 ```
+
+- For card transactions, it is advisable to ascertain the customer's card details before granting incentives according
+to the specifications of your application.
+- This function call takes the `card_bin` (usually the first 4-6 digits in debit/credit cards) and returns info regarding
+the card. A Python dict object is returned, thence use it according to your needs.
+```
+details = payment.verify_card_details(card_bin=553188)
+print(details)
+```
