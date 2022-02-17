@@ -16,7 +16,7 @@ def initiate_payment(tx_ref: str, amount: float, currency: Optional[str], redire
         "amount": f"{amount}",
         "currency": f"{currency}".upper(),
         "redirect_url": f"{redirect_url}",
-        "payment_options": f"{payment_options}",
+        "payment_options": payment_options,
         "customer": {
             "email": f"{customer_email}",
             "phonenumber": f"{customer_phone_number}",
