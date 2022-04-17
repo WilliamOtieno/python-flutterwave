@@ -5,9 +5,11 @@ from typing import Optional
 token = ""
 
 
-def initiate_payment(tx_ref: str, amount: float, currency: Optional[str], redirect_url: str, customer_name: str,
-                     payment_options: Optional[str], title: Optional[str], customer_email: str,
-                     customer_phone_number: Optional[str], description: Optional[str]) -> str:
+def initiate_payment(tx_ref: str, amount: float, redirect_url: str, customer_name: str,
+                     customer_email: str, currency: Optional[str] = None, payment_options: Optional[str] = None,
+                     title: Optional[str] = None, description: Optional[str] = None,
+                     customer_phone_number: Optional[str] = None,
+                     ) -> str:
     """This is used to initiate standard payments. It takes in the arguments and returns the url to redirect users for
     payments """
     payment_url = "https://api.flutterwave.com/v3/payments"
@@ -53,8 +55,8 @@ def get_payment_details(trans_id: str) -> dict:
     return dict(response.json())
 
 
-def trigger_mpesa_payment(tx_ref: str, amount: float, currency: str, email: Optional[str], phone_number: str,
-                          full_name: str) -> dict:
+def trigger_mpesa_payment(tx_ref: str, amount: float, currency: str, phone_number: str, full_name: str,
+                          email: Optional[str] = None) -> dict:
     """
     This will automatically trigger an MPESA payment in form of an STK Push from your customer. It will return a
     dictionary with details regarding the transaction. Flutterwave will also send the status to your webhook configured
