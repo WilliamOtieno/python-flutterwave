@@ -33,4 +33,5 @@ jobs:
     - name: Test with pytest
       run: |
         export SECRET_KEY=${{ secrets.SECRET_KEY }}
+        export FW_SECRET_KEY=${{ secrets.FW_SECRET }}
         pytest

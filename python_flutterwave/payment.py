@@ -1,18 +1,37 @@
 import requests
 import json
 from typing import Optional
+from .exceptions import *
 
 token = ""
 
 
-def initiate_payment(tx_ref: str, amount: float, redirect_url: str, customer_name: str,
-                     customer_email: str, currency: Optional[str] = None, payment_options: Optional[str] = None,
-                     title: Optional[str] = None, description: Optional[str] = None,
-                     customer_phone_number: Optional[str] = None,
-                     ) -> str:
-    """This is used to initiate standard payments. It takes in the arguments and returns the url to redirect users for
-    payments """
+def initiate_payment(tx_ref: str, amount: float, redirect_url: str, customer_email: str,
+                     customer_name: Optional[str] = None, currency: Optional[str] = None,
+                     customer_phone_number: Optional[str] = None, payment_options: Optional[str] = None,
+                     title: Optional[str] = None, description: Optional[str] = None) -> str:
+    """
+    This is used to initiate standard payments. It takes in the arguments and returns the url to redirect users for
+    payments
+    :param tx_ref: str
+    :param amount: float
+    :param redirect_url: str
+    :param customer_email: str
+    :param customer_name: Optional[str]
+    :param customer_phone_number: Optional[str]
+    :param currency: Optional[str]
+    :param payment_options: Optional[str]
+    :param title: Optional[str]
+    :param description: Optional[str]
+    :return: str
+    """
     payment_url = "https://api.flutterwave.com/v3/payments"
+
+    if token == "" or token is None:
+        raise TokenException(token=token, message="Authentication token absent")
+    if customer_email is None or customer_email == "":
+        raise CustomerDetailException(message="Customer email not provided")
+
     payload = json.dumps({
         "tx_ref": f"{tx_ref}",
         "amount": f"{amount}",
@@ -35,6 +54,10 @@ def initiate_payment(tx_ref: str, amount: float, redirect_url: str, customer_nam
     }
 
     response = requests.request(method="POST", url=payment_url, headers=headers, data=payload)
+    if response.status_code == 401:
+        raise TokenException(token=token, message='Invalid token provided')
+    if response.status_code == 400:
+        raise Exception(f"{response.json()['message']}")
     link = response.json()["data"]["link"]
     return link
 
@@ -46,12 +69,21 @@ def get_payment_details(trans_id: str) -> dict:
     """
     url = f"https://api.flutterwave.com/v3/transactions/{trans_id}/verify"
 
+    if token == "" or token is None:
+        raise TokenException(token=token, message="Authentication token absent")
+
     payload = {}
     headers = {
         'Authorization': f'Bearer {token}'
     }
 
     response = requests.request("GET", url, headers=headers, data=payload)
+    if response.status_code == 401:
+        raise TokenException(token=token, message='Invalid token provided')
+    if response.status_code == 400:
+        raise TransactionDetailException(trans_id=trans_id, message=f"{response.json()['message']}")
+    if response.status_code == 401:
+        raise TransactionDetailException(trans_id=trans_id, message=response.json()['message'])
     return dict(response.json())
 
 
@@ -63,7 +95,8 @@ def trigger_mpesa_payment(tx_ref: str, amount: float, currency: str, phone_numbe
     in the dashboard.
     """
     url = "https://api.flutterwave.com/v3/charges?type=mpesa"
-
+    if token == "" or token is None:
+        raise TokenException(token=token, message="Authentication token absent")
     payload = json.dumps({
         "tx_ref": f"{tx_ref}",
         "amount": f"{amount}",
@@ -78,6 +111,9 @@ def trigger_mpesa_payment(tx_ref: str, amount: float, currency: str, phone_numbe
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
+    if response.status_code == 401:
+        raise TokenException(token=token, message='Invalid token provided')
+
     return dict(response.json())
 
 
@@ -119,6 +155,8 @@ def verify_bank_account_details(account_number: str, account_bank: str) -> dict:
     :param account_bank: str
     :return: dict
     """
+    if token == "" or token is None:
+        raise TokenException(token=token, message="Authentication token absent")
 
     url = "https://api.flutterwave.com/v3/accounts/resolve"
 
@@ -142,6 +180,8 @@ def verify_card_details(card_bin: str) -> dict:
     :return: dict
     """
     url = f"https://api.flutterwave.com/v3/card-bins/{card_bin}"
+    if token == "" or token is None:
+        raise TokenException(token=token, message="Authentication token absent")
 
     payload = {}
     headers = {

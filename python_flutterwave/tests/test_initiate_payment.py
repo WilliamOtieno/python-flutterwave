@@ -9,7 +9,7 @@ from python_flutterwave import payment
 class TestStandardPayment(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.token = os.environ.get("SECRET_KEY")
+        self.token = os.environ.get("FW_SECRET_KEY")
         self.tx_ref = f"{''.join(random.choice(string.ascii_letters) for i in range(10))}"
         self.amount = 10.0
         self.currency = 'KES'

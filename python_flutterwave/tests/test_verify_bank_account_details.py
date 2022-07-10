@@ -5,7 +5,7 @@ from python_flutterwave import payment
 
 class TestVerifyBankAccountDetails(unittest.TestCase):
     def setUp(self) -> None:
-        self.token = os.environ.get("SECRET_KEY")
+        self.token = os.environ.get("FW_SECRET_KEY")
         self.account_number = "0690000032"
         self.account_bank = "044"
 
