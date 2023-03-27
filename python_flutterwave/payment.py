@@ -9,7 +9,7 @@ token = ""
 def initiate_payment(tx_ref: str, amount: float, redirect_url: str, customer_email: str,
                      customer_name: Optional[str] = None, currency: Optional[str] = None,
                      customer_phone_number: Optional[str] = None, payment_options: Optional[str] = None,
-                     title: Optional[str] = None, description: Optional[str] = None) -> str:
+                     title: Optional[str] = None, description: Optional[str] = None) -> tuple[str, dict]:
     """
     This is used to initiate standard payments. It takes in the arguments and returns the url to redirect users for
     payments
@@ -59,9 +59,10 @@ def initiate_payment(tx_ref: str, amount: float, redirect_url: str, customer_ema
     if response.status_code == 400:
         raise Exception(f"{response.json()['message']}")
     if response.status_code >= 400:
-        raise Exception(f"{response.json()['message']}")
-    link = response.json()["data"]["link"]
-    return link
+        res = response.text
+        return res, dict(response.json())
+    res = response.json()["data"]["link"]
+    return res, dict(response.json())
 
 
 def get_payment_details(trans_id: str) -> dict:
