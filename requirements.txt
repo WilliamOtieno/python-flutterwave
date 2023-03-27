@@ -1,6 +1,5 @@
 certifi==2022.12.7
 charset-normalizer==3.1.0
 idna==3.4
--e git+ssh://git@github.com/WilliamOtieno/python-flutterwave.git@c75e14f68b1a2aadb283b28c1871d9db0278001a#egg=python_flutterwave
 requests==2.28.2
 urllib3==1.26.15
