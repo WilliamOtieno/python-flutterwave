@@ -58,6 +58,8 @@ def initiate_payment(tx_ref: str, amount: float, redirect_url: str, customer_ema
         raise TokenException(token=token, message='Invalid token provided')
     if response.status_code == 400:
         raise Exception(f"{response.json()['message']}")
+    if response.status_code >= 400:
+        raise Exception(f"{response.json()['message']}")
     link = response.json()["data"]["link"]
     return link
 
