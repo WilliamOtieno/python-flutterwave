@@ -45,7 +45,7 @@ Here are all the possible values for payment options available on Flutterwave:
 
 - To trigger a standard payment that returns a redirect uri
 
-```
+```python
 uri = payment.initiate_payment(tx_ref="qwerty", amount=100, redirect_url='your_callback_url',
                                payment_options='mpesa', customer_email='example@email.com',
                                customer_phone_number='0123456789', currency='KES', customer_name='John Doe',
@@ -58,17 +58,23 @@ info regarding the payment i.e. `transaction_id` and `tx_ref`. If your url is `h
 then it may be `http://example.com/callback/?status=successful&tx_ref=qwerty&transaction_id=2784792`
 - You should save the transaction_id to your DB as it will be used to query the transaction details.
 
+> There is no need to save the transaction_id as it is also possible to use tx_ref to get the payment details!
+> Check here - https://developer.flutterwave.com/reference/endpoints/transactions/
+
 
 - To check the transaction details e.g. successful or not, grab the transaction_id from the previous step. 
-```
+```python
 details = payment.get_payment_details(transaction_id)
+# or
+deailts = payment.get_payment_details_via_tx_ref(tx_ref)
+
 print(details)
 ```
 
 - To trigger an automatic MPESA charge on your customer through STK push, first configure your Webhook url in the dashboard, it may be a
 simple server; Flutterwave will post some data regarding your transaction status in that url. This method call will
 return a Python dict object. You can decide what to do thereon.
-```
+```python
 mpesa_trans_details = payment.trigger_mpesa_payment(tx_ref="qwertyuio", amount=100, currency='KES', 
                                                     email='johndoe@gmail.com', phone_number='1234567890', 
                                                     full_name='John Doe')
@@ -103,7 +109,7 @@ Zenith Bank -- 057
 ```
 
 
-```
+```python
 details = payment.initiate_ussd_payment(tx_ref="123erd", amount=100, email='johndoe@gmail.com',
                                         phone_number='789456123', full_name='John Doe', account_bank='057')
 print(details)
@@ -112,7 +118,7 @@ print(details)
 - For bank transactions, it is important to first verify the details given to you by the customer before granting incentives
 according to the specifications of your application.
 - To verify bank details call the function below that returns a Python dictionary with the data...
-```
+```python
 details = payment.verify_bank_account_details(account_number= "0690000032", account_bank= "044")
 print(details)
 ```
@@ -121,7 +127,7 @@ print(details)
 to the specifications of your application.
 - This function call takes the `card_bin` (usually the first 4-6 digits in debit/credit cards) and returns info regarding
 the card. A Python dict object is returned, thence use it according to your needs.
-```
+```python
 details = payment.verify_card_details(card_bin=553188)
 print(details)
 ```
