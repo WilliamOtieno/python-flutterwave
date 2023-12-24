@@ -90,6 +90,30 @@ def get_payment_details(trans_id: str) -> dict:
     return dict(response.json())
 
 
+def get_payment_details_via_tx_ref(tx_ref: str) -> dict:
+    """
+    Takes the tx_ref from the request and returns the status info in json.
+    """
+    base_url = 'https://api.flutterwave.com/v3/transactions/verify_by_reference?tx_ref='
+
+    if token == "" or token is None:
+        raise TokenException(token=token, message="Authentication token absent")
+
+    payload = {}
+    headers = {
+        'Authorization': f'Bearer {token}'
+    }
+
+    response = requests.request("GET", f'{base_url}{tx_ref}', headers=headers, data=payload)
+    if response.status_code == 401:
+        raise TokenException(token=token, message='Invalid token provided')
+    if response.status_code == 400:
+        raise TransactionDetailException(trans_id=trans_id, message=f"{response.json()['message']}")
+    if response.status_code == 401:
+        raise TransactionDetailException(trans_id=trans_id, message=response.json()['message'])
+    return dict(response.json())
+
+
 def trigger_mpesa_payment(tx_ref: str, amount: float, currency: str, phone_number: str, full_name: str,
                           email: Optional[str] = None) -> dict:
     """
