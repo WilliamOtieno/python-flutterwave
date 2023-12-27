@@ -7,12 +7,13 @@ from python_flutterwave import payment
 
 
 class TestStandardPayment(unittest.TestCase):
-
     def setUp(self) -> None:
         self.token = os.environ.get("FW_SECRET_KEY")
-        self.tx_ref = f"{''.join(random.choice(string.ascii_letters) for i in range(10))}"
+        self.tx_ref = (
+            f"{''.join(random.choice(string.ascii_letters) for _ in range(10))}"
+        )
         self.amount = 10.0
-        self.currency = 'KES'
+        self.currency = "KES"
         self.redirect_url = "https://example.com/"
         self.payment_options = "mpesa"
         self.customer_email = "johndoe@gmail.com"
@@ -21,11 +22,18 @@ class TestStandardPayment(unittest.TestCase):
         self.title = "Test Payment"
         self.description = "Just pay me..."
         payment.token = self.token
-        self.link = payment.initiate_payment(tx_ref=self.tx_ref, amount=self.amount, redirect_url=self.redirect_url,
-                                             payment_options=self.payment_options, customer_email=self.customer_email,
-                                             customer_phone_number=self.customer_phone_number,
-                                             customer_name=self.customer_name, title=self.title,
-                                             description=self.description, currency=self.currency)
+        self.link = payment.initiate_payment(
+            tx_ref=self.tx_ref,
+            amount=self.amount,
+            redirect_url=self.redirect_url,
+            payment_options=self.payment_options,
+            customer_email=self.customer_email,
+            customer_phone_number=self.customer_phone_number,
+            customer_name=self.customer_name,
+            title=self.title,
+            description=self.description,
+            currency=self.currency,
+        )
 
     def tearDown(self) -> None:
         pass

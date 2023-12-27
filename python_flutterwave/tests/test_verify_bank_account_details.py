@@ -10,8 +10,9 @@ class TestVerifyBankAccountDetails(unittest.TestCase):
         self.account_bank = "044"
 
         payment.token = self.token
-        self.details = payment.verify_bank_account_details(account_bank=self.account_bank,
-                                                           account_number=self.account_number)
+        self.details = payment.verify_bank_account_details(
+            account_bank=self.account_bank, account_number=self.account_number
+        )
 
     def tearDown(self) -> None:
         pass

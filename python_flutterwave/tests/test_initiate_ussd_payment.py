@@ -7,19 +7,25 @@ from python_flutterwave import payment
 
 
 class TestInitiateUSSDPayment(unittest.TestCase):
-
     def setUp(self) -> None:
         self.token = os.environ.get("FW_SECRET_KEY")
-        self.tx_ref = f"{''.join(random.choice(string.ascii_letters) for i in range(10))}"
+        self.tx_ref = (
+            f"{''.join(random.choice(string.ascii_letters) for i in range(10))}"
+        )
         self.amount = 10.0
         self.account_bank = "044"
         self.email = "johndoe@gmail.com"
         self.phone_number = "1234567890"
         self.full_name = "John Doe"
         payment.token = self.token
-        self.details = payment.initiate_ussd_payment(tx_ref=self.tx_ref, amount=self.amount,
-                                                     email=self.email, phone_number=self.phone_number,
-                                                     full_name=self.full_name, account_bank=self.account_bank)
+        self.details = payment.initiate_ussd_payment(
+            tx_ref=self.tx_ref,
+            amount=self.amount,
+            email=self.email,
+            phone_number=self.phone_number,
+            full_name=self.full_name,
+            account_bank=self.account_bank,
+        )
 
     def tearDown(self) -> None:
         pass
