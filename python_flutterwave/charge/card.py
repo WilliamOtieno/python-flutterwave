@@ -2,13 +2,14 @@ import os
 import requests
 import json
 
-from python_flutterwave.exceptions import TokenException
+from python_flutterwave.decorators import handle_api_exceptions
 
 
 token = os.environ.get("SECRET_KEY")
 base_url = "https://api.flutterwave.com/v3/charges"
 
 
+@handle_api_exceptions
 def initiate_card_charge(
     amount: int,
     card_number: int,
@@ -30,9 +31,6 @@ def initiate_card_charge(
     :return: dict
     """
 
-    if token == "" or token is None:
-        raise TokenException(token=token, message="Authentication token absent")
-
     params = {"type": "card"}
     payload = json.dumps(
         {
@@ -48,11 +46,5 @@ def initiate_card_charge(
     headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
 
     response = requests.post(url=base_url, headers=headers, data=payload, params=params)
-    if response.status_code == 401:
-        raise TokenException(token=token, message="Invalid token provided")
-    if response.status_code == 400:
-        raise Exception(f"{response.json()['message']}")
-    if response.status_code >= 400:
-        raise Exception(response.text)
 
     return dict(response.json())
