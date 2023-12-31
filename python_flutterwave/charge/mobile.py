@@ -5,7 +5,7 @@ import json
 from python_flutterwave.decorators import handle_api_exceptions
 
 
-token = os.environ.get("SECRET_KEY")
+token = os.environ.get("FW_SECRET_KEY")
 base_url = "https://api.flutterwave.com/v3/charges"
 
 

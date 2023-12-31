@@ -3,7 +3,7 @@ import requests
 import json
 from python_flutterwave.decorators import handle_api_exceptions
 
-token = os.environ.get("SECRET_KEY")
+token = os.environ.get("FW_SECRET_KEY")
 
 
 @handle_api_exceptions
