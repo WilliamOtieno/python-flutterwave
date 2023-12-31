@@ -14,12 +14,16 @@ def initiate_tokenized_charge(
 ) -> dict:
     """
     This endpoint helps you tokenize a customer's card
-    :param token: str
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :param currency: str
-    :return: dict
+   	
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        currency (str): Currency to be used
+        token (str): Card token returned from the transaction verification endpoint as data.card.token
+
+    Returns: 
+        dict: Response Details
     """
 
     payload = json.dumps(
@@ -51,9 +55,13 @@ def initiate_bulk_tokenized_charges(
 ) -> dict:
     """
     Tokenize multiple cards at once
-    :param retry_strategy: RetryStrategy
-    :param bulk_data: list[ChargeData]
-    :return: dict
+
+    Args:
+        retry_strategy: RetryStrategy
+        bulk_data: list[ChargeData]
+    
+    Returns:
+        dict: Response Details
     """
 
     payload = json.dumps(
@@ -80,7 +88,12 @@ def initiate_bulk_tokenized_charges(
 def fetch_bulk_tokenized_charges(bulk_id: int):
     """
     This endpoint allows you to get bulk tokenized charges transactions
-    :param bulk_id: int
+   	
+    Args:
+        bulk_id (int): id returned in the bulk charge response
+
+    Returns:
+        dict: Response Details
     """
 
     headers = {
@@ -100,7 +113,12 @@ def fetch_bulk_tokenized_charges(bulk_id: int):
 def fetch_bulk_tokenized_charges_status(bulk_id: int):
     """
     This endpoint allows you to query the status of a bulk tokenized charge
-    :param bulk_id: int
+
+    Args:
+        bulk_id (int): id returned in the bulk charge response
+
+    Returns:
+        dict: Response Details
     """
 
     headers = {
@@ -120,10 +138,15 @@ def fetch_bulk_tokenized_charges_status(bulk_id: int):
 def update_card_token(email: str, full_name: str, phone_number: str, token: str):
     """
     This endpoints allow developers update the details tied to a customer's card token.
-    :param email: str
-    :param phone_number: str
-    :param full_name: str
-    :param token: str
+   	
+    Args:
+        email (str): The customer's email address.
+        full_name (str): The customer's email address.
+        phone_number (str): Customer's phone number.
+        token (str): Card token returned from the transaction verification endpoint as data.card.token
+
+    Returns: 
+        dict: Response Details
     """
 
     payload = json.dumps(

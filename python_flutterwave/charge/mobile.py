@@ -15,11 +15,15 @@ def initiate_mpesa_charge(
 ) -> dict:
     """
     Collect Mpesa payments from customers in Kenya
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :param phone_number: str
-    :return: dict
+    
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        phone_number (str): Phone number linked to the customer's bank account or mobile money account
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "mpesa"}
@@ -45,12 +49,16 @@ def initiate_ghana_mobile_charge(
 ) -> dict:
     """
     Collect mobile money payments from customers in Ghana
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :param phone_number: str
-    :param network: str
-    :return: dict
+    
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        phone_number (str): Phone number linked to the customer's bank account or mobile money account
+        network (str): Mobile money network provider (MTN, VODAFONE, TIGO)
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "mobile_money_ghana"}
@@ -80,11 +88,15 @@ def initiate_uganda_mobile_charge(
 ) -> dict:
     """
     Collect mobile money payments from customers in Uganda
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :param phone_number: str
-    :return: dict
+    
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        phone_number (str): Phone number linked to the customer's bank account or mobile money account
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "mobile_money_uganda"}
@@ -115,13 +127,17 @@ def initiate_franco_mobile_charge(
 ) -> dict:
     """
     Collect mobile money payments from customers in Francophone countries
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :param phone_number: str
-    :param currency: str,
-    :param franco_country_code: str
-    :return: dict
+    
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        phone_number (str): Phone number linked to the customer's bank account or mobile money account
+        currency (str): Currency to charge in. 
+        franco_country_code (str): Country code (BF, CI, CM, SN)
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "mobile_money_franco"}
@@ -151,11 +167,15 @@ def initiate_tanzania_mobile_charge(
 ) -> dict:
     """
     Collect mobile money payments from customers in Tanzania
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :param phone_number: str
-    :return: dict
+    
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        phone_number (str): Phone number linked to the customer's bank account or mobile money account
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "mobile_money_tanzania"}
@@ -181,12 +201,16 @@ def initiate_rwanda_mobile_charge(
 ) -> dict:
     """
     Collect mobile money payments from customers in Rwanda
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :param phone_number: str
-    :param order_id: str
-    :return: dict
+    
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        phone_number (str): Phone number linked to the customer's bank account or mobile money account
+        order_id (str): Unique ref for the mobilemoney transaction to be provided by the merchant
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "mobile_money_rwanda"}
@@ -216,11 +240,15 @@ def initiate_zambia_mobile_charge(
 ) -> dict:
     """
     Collect mobile money payments from customers in Zambia
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :param phone_number: str
-    :return: dict
+    
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        phone_number (str): Phone number linked to the customer's bank account or mobile money account
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "mobile_money_zambia"}
@@ -250,12 +278,16 @@ def initiate_ussd_charge(
 ) -> dict:
     """
     Collect USSD payments from customers in Nigeria
-    :param tx_ref: str
-    :param account_bank: str
-    :param amount: int
-    :param email: str
-    :param phone_number: str
-    :return: dict
+
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        account_bank (str): Bank numeric code. It can be gotten from the banks endpoint.
+        phone_number (str): Phone number linked to the customer's bank account or mobile money account
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "ussd"}
@@ -285,11 +317,15 @@ def initiate_apple_pay_charge(
 ) -> dict:
     """
     Accept payments from your customers with Apple Pay
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :param currency: str
-    :return: dict
+    
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        currency (str): Currency to charge in. 
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "applepay"}
@@ -317,11 +353,15 @@ def initiate_google_pay_charge(
 ) -> dict:
     """
     Accept payments from your customers with Google Pay
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :param currency: str
-    :return: dict
+    
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        currency (str): Currency to charge in. 
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "googlepay"}
@@ -348,10 +388,14 @@ def initiate_enaira_charge(
 ) -> dict:
     """
     Accept payment from eNaira wallets
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :return: dict
+    
+    Args:
+        tx_ref (int): This is a unique reference peculiar to the transaction being carried out.
+        amount (int): This is the amount to be charged for the transaction.
+        email (str): The customer's email address.
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "enaira"}
@@ -377,10 +421,14 @@ def initiate_fawry_pay_charge(
 ) -> dict:
     """
     Receive Fawry payments from customers in Egypt
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :return: dict
+    
+    Args:
+        tx_ref (int): This is a unique reference peculiar to the transaction being carried out.
+        amount (int): This is the amount to be charged for the transaction.
+        email (str): The customer's email address.
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "fawry_pay"}
@@ -408,11 +456,14 @@ def initiate_paypal_charge(
 ) -> dict:
     """
     Collect payments from customers with PayPal
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :param currency: str
-    :return: dict
+    
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        currency (str): Currency to charge in.
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "paypal"}
