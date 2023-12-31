@@ -5,6 +5,7 @@ from .exceptions import TokenException, FlutterwaveAPIException
 
 token = os.environ.get("FW_SECRET_KEY")
 
+
 def require_token(func):
     def wrapper(*args, **kwargs):
         if token == "" or token is None:
