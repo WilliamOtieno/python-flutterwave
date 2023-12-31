@@ -5,7 +5,7 @@ import json
 from python_flutterwave.decorators import handle_api_exceptions
 
 
-token = os.environ.get("SECRET_KEY")
+token = os.environ.get("FW_SECRET_KEY")
 base_url = "https://api.flutterwave.com/v3/charges"
 
 
@@ -21,14 +21,18 @@ def initiate_card_charge(
 ) -> dict:
     """
     This is used to initiate card payments.
-    :param tx_ref: str
-    :param amount: int
-    :param card_number: int
-    :param cvv: int
-    :param expiry_month: int
-    :param expiry_year: int
-    :param email: str
-    :return: dict
+    
+    Args:
+        tx_ref (int): This is a unique reference peculiar to the transaction being carried out.
+        amount (int): This is the amount to be charged for the transaction.
+        email (str): The customer's email address.
+        card_number (int): The customer's card.
+        cvv (int): Card CVV.
+        expiry_month (int): Card expiry month
+        expiry_year (int): Card expiry year
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "card"}

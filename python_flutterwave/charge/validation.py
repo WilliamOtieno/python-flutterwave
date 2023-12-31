@@ -3,16 +3,20 @@ import requests
 import json
 from python_flutterwave.decorators import handle_api_exceptions
 
-token = os.environ.get("SECRET_KEY")
+token = os.environ.get("FW_SECRET_KEY")
 
 
 @handle_api_exceptions
 def validate_charge(otp: str, flw_ref: str) -> dict:
     """
-    Collect Mpesa payments from customers in Kenya
-    :param flw_ref: str
-    :param otp: str
-    :return: dict
+    Validate a charge
+    
+    Args:
+        flw_ref (str): Reference returned in the initiate charge call as `data.flw_ref`
+        otp (str): Random number of at least 6 characters sent to customers phone number.
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "mpesa"}

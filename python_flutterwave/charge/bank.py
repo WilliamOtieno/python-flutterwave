@@ -5,7 +5,7 @@ import json
 from python_flutterwave.decorators import handle_api_exceptions
 
 
-token = os.environ.get("SECRET_KEY")
+token = os.environ.get("FW_SECRET_KEY")
 base_url = "https://api.flutterwave.com/v3/charges"
 
 
@@ -17,10 +17,14 @@ def initiate_bank_charge(
 ) -> dict:
     """
     Collect payments from your customers via bank transfers
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :return: dict
+
+    Args:
+        tx_ref (int): This is a unique reference peculiar to the transaction being carried out.
+        amount (int): This is the amount to be charged for the transaction.
+        email (str): The customer's email address.
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "bank_transfer"}
@@ -46,10 +50,14 @@ def initiate_nigeria_bank_charge(
 ) -> dict:
     """
     Charge Nigerian bank accounts using Flutterwave
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :return: dict
+
+    Args:
+        tx_ref (int): This is a unique reference peculiar to the transaction being carried out.
+        amount (int): This is the amount to be charged for the transaction.
+        email (str): The customer's email address.
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "mono"}
@@ -73,12 +81,16 @@ def initiate_uk_eu_bank_charge(
 ) -> dict:
     """
     Charge Customers UK and EU bank accounts
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :param phone_number: str
-    :param is_token_io: int
-    :return: dict
+
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        phone_number (str): Phone number linked to the customer's bank account or mobile money account
+        is_token_io (int):
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "account-ach-uk"}
@@ -108,12 +120,16 @@ def initiate_ach_bank_charge(
 ) -> dict:
     """
     Collect ACH payments for USD and ZAR transactions
-    :param tx_ref: str
-    :param amount: int
-    :param email: str
-    :param phone_number: str
-    :param currency: str
-    :return: dict
+
+    Args:
+        tx_ref (int): Unique reference peculiar to the transaction.
+        amount (int): Amount to be charged for the transaction.
+        email (str): The customer's email address.
+        phone_number (str): Phone number linked to the customer's bank account or mobile money account
+        currency (str): Currency to charge in. Expected values are ZAR for ZA ACH and USD for US ACH.
+
+    Returns: 
+        dict: Response Details
     """
 
     params = {"type": "account-ach-uk"}

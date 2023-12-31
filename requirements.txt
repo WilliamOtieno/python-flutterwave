@@ -3,3 +3,5 @@ charset-normalizer
 idna
 requests
 urllib3
+sphinx
+autodoc
