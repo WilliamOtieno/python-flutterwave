@@ -6,3 +6,4 @@ urllib3
 sphinx
 autodoc
 sphinx-rtd-theme
+black
