@@ -13,6 +13,7 @@ def validate_charge(otp: str, flw_ref: str) -> dict:
     
     Args:
         flw_ref (str): Reference returned in the initiate charge call as `data.flw_ref`
+        
         otp (str): Random number of at least 6 characters sent to customers phone number.
 
     Returns: 

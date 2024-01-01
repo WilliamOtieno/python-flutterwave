@@ -24,11 +24,17 @@ def initiate_card_charge(
     
     Args:
         tx_ref (int): This is a unique reference peculiar to the transaction being carried out.
+
         amount (int): This is the amount to be charged for the transaction.
+
         email (str): The customer's email address.
+
         card_number (int): The customer's card.
+
         cvv (int): Card CVV.
+
         expiry_month (int): Card expiry month
+
         expiry_year (int): Card expiry year
 
     Returns: 

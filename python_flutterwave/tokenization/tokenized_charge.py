@@ -17,9 +17,13 @@ def initiate_tokenized_charge(
    	
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         currency (str): Currency to be used
+        
         token (str): Card token returned from the transaction verification endpoint as data.card.token
 
     Returns: 
@@ -58,6 +62,7 @@ def initiate_bulk_tokenized_charges(
 
     Args:
         retry_strategy: RetryStrategy
+        
         bulk_data: list[ChargeData]
     
     Returns:
@@ -141,8 +146,11 @@ def update_card_token(email: str, full_name: str, phone_number: str, token: str)
    	
     Args:
         email (str): The customer's email address.
+        
         full_name (str): The customer's email address.
+        
         phone_number (str): Customer's phone number.
+        
         token (str): Card token returned from the transaction verification endpoint as data.card.token
 
     Returns: 
