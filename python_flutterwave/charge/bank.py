@@ -20,7 +20,9 @@ def initiate_bank_charge(
 
     Args:
         tx_ref (int): This is a unique reference peculiar to the transaction being carried out.
+
         amount (int): This is the amount to be charged for the transaction.
+        
         email (str): The customer's email address.
 
     Returns: 
@@ -53,7 +55,9 @@ def initiate_nigeria_bank_charge(
 
     Args:
         tx_ref (int): This is a unique reference peculiar to the transaction being carried out.
+        
         amount (int): This is the amount to be charged for the transaction.
+        
         email (str): The customer's email address.
 
     Returns: 
@@ -84,9 +88,13 @@ def initiate_uk_eu_bank_charge(
 
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         phone_number (str): Phone number linked to the customer's bank account or mobile money account
+        
         is_token_io (int):
 
     Returns: 
@@ -123,9 +131,13 @@ def initiate_ach_bank_charge(
 
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         phone_number (str): Phone number linked to the customer's bank account or mobile money account
+        
         currency (str): Currency to charge in. Expected values are ZAR for ZA ACH and USD for US ACH.
 
     Returns: 

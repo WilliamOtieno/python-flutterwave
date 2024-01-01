@@ -18,8 +18,11 @@ def initiate_mpesa_charge(
     
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         phone_number (str): Phone number linked to the customer's bank account or mobile money account
 
     Returns: 
@@ -52,9 +55,13 @@ def initiate_ghana_mobile_charge(
     
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         phone_number (str): Phone number linked to the customer's bank account or mobile money account
+        
         network (str): Mobile money network provider (MTN, VODAFONE, TIGO)
 
     Returns: 
@@ -91,8 +98,11 @@ def initiate_uganda_mobile_charge(
     
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         phone_number (str): Phone number linked to the customer's bank account or mobile money account
 
     Returns: 
@@ -130,10 +140,15 @@ def initiate_franco_mobile_charge(
     
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         phone_number (str): Phone number linked to the customer's bank account or mobile money account
+        
         currency (str): Currency to charge in. 
+        
         franco_country_code (str): Country code (BF, CI, CM, SN)
 
     Returns: 
@@ -170,8 +185,11 @@ def initiate_tanzania_mobile_charge(
     
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         phone_number (str): Phone number linked to the customer's bank account or mobile money account
 
     Returns: 
@@ -204,9 +222,13 @@ def initiate_rwanda_mobile_charge(
     
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         phone_number (str): Phone number linked to the customer's bank account or mobile money account
+        
         order_id (str): Unique ref for the mobilemoney transaction to be provided by the merchant
 
     Returns: 
@@ -243,8 +265,11 @@ def initiate_zambia_mobile_charge(
     
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         phone_number (str): Phone number linked to the customer's bank account or mobile money account
 
     Returns: 
@@ -281,9 +306,13 @@ def initiate_ussd_charge(
 
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         account_bank (str): Bank numeric code. It can be gotten from the banks endpoint.
+        
         phone_number (str): Phone number linked to the customer's bank account or mobile money account
 
     Returns: 
@@ -320,8 +349,11 @@ def initiate_apple_pay_charge(
     
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         currency (str): Currency to charge in. 
 
     Returns: 
@@ -356,8 +388,11 @@ def initiate_google_pay_charge(
     
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         currency (str): Currency to charge in. 
 
     Returns: 
@@ -391,7 +426,9 @@ def initiate_enaira_charge(
     
     Args:
         tx_ref (int): This is a unique reference peculiar to the transaction being carried out.
+        
         amount (int): This is the amount to be charged for the transaction.
+        
         email (str): The customer's email address.
 
     Returns: 
@@ -424,7 +461,9 @@ def initiate_fawry_pay_charge(
     
     Args:
         tx_ref (int): This is a unique reference peculiar to the transaction being carried out.
+        
         amount (int): This is the amount to be charged for the transaction.
+        
         email (str): The customer's email address.
 
     Returns: 
@@ -459,9 +498,13 @@ def initiate_paypal_charge(
     
     Args:
         tx_ref (int): Unique reference peculiar to the transaction.
+        
         amount (int): Amount to be charged for the transaction.
+        
         email (str): The customer's email address.
+        
         currency (str): Currency to charge in.
+    
     Returns: 
         dict: Response Details
     """
